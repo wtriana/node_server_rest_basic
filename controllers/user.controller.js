@@ -2,14 +2,13 @@ const { request, response,  } = require('express');
 
 const getUser = (req = request, res = response) => {
 
-    const {q,uuid,limit = 100, page = 1, option = {}} = req.query;
+    const {q,uuid,limit = 100, page = 1} = req.query;
     res.json({
         msg:'get API from controller users',
         q,
         uuid,
         limit,
-        page,
-        option
+        page
     });
 }
 
