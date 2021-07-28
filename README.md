@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-# node_server_rest_basic
-Servidor básico node - rest  
-=======
 # WebServer + RestServer
-
+Servidor básico node - rest  
 Para recordar: Se debe  ejecutar ```npm install``` para reconstruir los módulos de Node;
->>>>>>> 09caf4e... mod de readme
