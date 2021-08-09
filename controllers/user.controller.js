@@ -87,14 +87,22 @@ const deleteUser = async (req, res) => {
 
         //id a borrar 
         const { id } = req.params;
+        let user = await User.findById( id );
+
+        if ( !user.status ) {
+            return res.status(400).json({
+                msg:'Usuario ya se encuentra inactivo'
+            })
+        } 
 
         // borrado físico
         //const user = await User.findByIdAndDelete( id ); 
         
         //borrado lógico
-        const user = await User.findByIdAndUpdate( id , {status:false} );
-                    
-        res.status(200).json({
+        user = await User.findByIdAndUpdate( id , {status:false} );
+
+        //console.log(user);
+        return res.status(200).json({
             msg:'Se ha borrado el usuario satisfactoriamente',
             user,
         });
