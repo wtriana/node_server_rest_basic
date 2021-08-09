@@ -85,17 +85,20 @@ const deleteUser = async (req, res) => {
 
     try {
 
+        //id a borrar 
+        const { id } = req.params;
 
-        const {id} = req.params;
         // borrado físico
-        const user = await User.findByIdAndDelete( id ); 
+        //const user = await User.findByIdAndDelete( id ); 
         
         //borrado lógico
-        //const user = await User.findByIdAndUpdate( id , {status:false} );
+        const user = await User.findByIdAndUpdate( id , {status:false} );
+                    
         res.status(200).json({
             msg:'Se ha borrado el usuario satisfactoriamente',
-            user 
+            user,
         });
+       
     } catch (error) {
         console.log(CONFLIC,error)
         res.status(CONFLIC).json(error);
