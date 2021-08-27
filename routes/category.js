@@ -27,7 +27,8 @@ router.get('/:id',[
 ] ,getCategoryById );
 
 //crear categoria post a la raiz con token valido
-router.post('/', [ validateJWT,
+router.post('/', [
+    validateJWT,
     hasPrivileges('ADMIN_ROLE','SALE_ROLE'),
     check('name','Nombre es obligatorio').notEmpty(),
     check('state','Estado es obligatorio').notEmpty(),
@@ -37,7 +38,8 @@ router.post('/', [ validateJWT,
     createCategory );
 
 // put para actualizar un registro por id con token valido
-router.put('/:id',[validateJWT,
+router.put('/:id',[
+    validateJWT,
     check('id','Id Mongo no Valido').isMongoId(),
     check('id','Id no existe en las categorias').custom( categoryExistsById ),
     check('name','nombre es requerido').notEmpty(),
@@ -46,7 +48,8 @@ router.put('/:id',[validateJWT,
 ],updateCategory);
 
 // borrado logico con token y que sea admin
-router.delete('/:id', [validateJWT,
+router.delete('/:id', [
+    validateJWT,
     check('id','Id Mongo no Valido').isMongoId(),
     check('id','Id no existe en las categorias').custom( categoryExistsById ),
     validateAdminRole,
