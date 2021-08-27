@@ -19,7 +19,7 @@ const router = Router();
 
 router.get('/', getUser);
 
-// segundo parametro es un middelwares para validar email de la lib express-validator 
+// segundo parametro es un middelwares para validar los campos con check lib express-validator 
 router.post('/',[
     validateJWT,
     hasPrivileges('ADMIN_ROLE','SALE_ROLE'),

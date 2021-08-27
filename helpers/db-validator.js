@@ -1,5 +1,5 @@
 const Role = require('../models/role'); 
-const User = require('../models/user'); 
+const {Category,User} = require('../models'); 
 
 const isValidRole = async(role = '') => {
     
@@ -21,6 +21,7 @@ const emailExists = async (email='') => {
 
 }
 
+/** validador de usuarios en BDs */
 const userExistsById = async (id = '') => {
 
     //verficar si usuario existe
@@ -32,8 +33,19 @@ const userExistsById = async (id = '') => {
 
 }
 
+/** validador de categorias en BDs */
+const categoryExistsById = async (id = '') => {
+
+    //verficar si usuario existe
+    const categoryExists = await Category.findById( { _id : id } );// el obj _id es en la BD y en id viene el dato capturado
+    if ( !categoryExists ) {
+        throw new Error( `El id [${id}] enviado no se encuentra registrado` );
+    }
+}
+
 module.exports = {
     isValidRole,
     emailExists,
-    userExistsById
+    userExistsById,
+    categoryExistsById
 }

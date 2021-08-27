@@ -4,7 +4,7 @@ const bcryptjs = require('bcryptjs');
 
 const OK = 200;
 const CONFLIC = 409;
-const BAD_REQUEST = 409;
+const BAD_REQUEST = 400;
 
 const getUser = async(req = request, res = response) => {
 
@@ -41,9 +41,7 @@ const getUser = async(req = request, res = response) => {
 }
 
 const postUser = async(req, res = response) => {
-
     try {
-        
         const { name, email, password, image, role } = req.body;
         const salt = bcryptjs.genSaltSync();
         const user = new User({ name, email, password , role }); // creación de la instancia
@@ -71,7 +69,7 @@ const putUser = async(req, res) => {
             restoBody.password = bcryptjs.hashSync(password, salt);
         }
         
-        const user = await User.findByIdAndUpdate(id, restoBody);
+        const user = await User.findByIdAndUpdate(id, restoBody, {new:true});
         res.json({
             msg:'Se realiza correctamente la actualización',
             user
@@ -99,7 +97,7 @@ const deleteUser = async (req, res) => {
         //const user = await User.findByIdAndDelete( id ); 
         
         //borrado lógico
-        user = await User.findByIdAndUpdate( id , {status:false} );
+        user = await User.findByIdAndUpdate( id , {status:false} , {new:true});
 
         //console.log(user);
         return res.status(200).json({
