@@ -1,5 +1,5 @@
 const Role = require('../models/role'); 
-const {Category,User} = require('../models'); 
+const { Category, User, Product } = require('../models'); 
 
 const isValidRole = async(role = '') => {
     
@@ -28,7 +28,7 @@ const userExistsById = async (id = '') => {
     const userExists = await User.findById( { _id : id } );// el obj _id es en la BD y en id viene el dato capturado
     //console.log({userExists})
     if ( !userExists ) {
-        throw new Error( `El id [${id}] enviado no se encuentra registrado` );
+        throw new Error( `El id de usuario [${id}] enviado no se encuentra registrado` );
     }
 
 }
@@ -37,15 +37,31 @@ const userExistsById = async (id = '') => {
 const categoryExistsById = async (id = '') => {
 
     //verficar si usuario existe
-    const categoryExists = await Category.findById( { _id : id } );// el obj _id es en la BD y en id viene el dato capturado
-    if ( !categoryExists ) {
-        throw new Error( `El id [${id}] enviado no se encuentra registrado` );
+    if(id.length > 0){
+        const categoryExists = await Category.findById( { _id : id } );// el obj _id es en la BD y en id viene el dato capturado
+        if ( !categoryExists ) {
+            throw new Error( `El id de categoria [${id}] enviado no se encuentra registrado` );
+        }
+    } else {
+        throw new Error( `categoria [${id}] no puede ser vacia` );
     }
 }
+
+/** validador de product en BDs */
+const productExistsById = async (id = '') => {
+
+    //verficar si usuario existe
+    const productExists = await Product.findById( { _id : id } );// el obj _id es en la BD y en id viene el dato capturado
+    if ( !productExists ) {
+        throw new Error( `El id de producto [${id}] enviado no se encuentra registrado` );
+    }
+}
+
 
 module.exports = {
     isValidRole,
     emailExists,
     userExistsById,
-    categoryExistsById
+    categoryExistsById,
+    productExistsById
 }
