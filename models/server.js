@@ -12,8 +12,9 @@ class Server{
         this.paths = {
             auth:    '/api/auth',
             category:'/api/category',
-            user:    '/api/user',
             product: '/api/product',
+            user:    '/api/user',
+            search:  '/api/search',
         }
                 
         //middelwares
@@ -42,8 +43,9 @@ class Server{
         // rutas configuradas
         this.app.use(this.paths.auth, require('../routes/auth')); 
         this.app.use(this.paths.category, require('../routes/category')); 
-        this.app.use(this.paths.user, require('../routes/user'));
         this.app.use(this.paths.product, require('../routes/product'));
+        this.app.use(this.paths.user, require('../routes/user'));
+        this.app.use(this.paths.search, require('../routes/search'));
                
     }
 
