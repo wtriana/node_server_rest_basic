@@ -16,10 +16,6 @@ const uploadFileNew = async( req, res = response ) => {
     } catch (error) {
         return res.status(400).json({ error });
     }
-    
-
-    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-   
 
 }
 
