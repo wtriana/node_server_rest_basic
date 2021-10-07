@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 
-const { uploadFileNew, updateImage,viewImage } = require('../controllers/uploads.controller');
+const { uploadFileNew, updateImage, updateImageCloudDinary, viewImage } = require('../controllers/uploads.controller');
 const { validCollection } = require('../helpers');
 const { validateFields, validateFile } = require('../middlewares');
 
@@ -15,7 +15,8 @@ router.put('/:collection/:id',[
     check('id','id no es un mongoID').isMongoId(),
     check('collection').custom( coll => validCollection( coll, ['user','product'] ) ),
     validateFields
-], updateImage);
+], updateImageCloudDinary);
+//], updateImage); // este método para subir imagenes al server local
 
 router.get('/:collection/:id',
 check('id','id no es un mongoID').isMongoId(),
