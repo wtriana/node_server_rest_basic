@@ -9,7 +9,8 @@ const uploadFileNew = async( req, res = response ) => {
             return res.status(400).json({msg:'No files were uploaded.'});
         }
 
-        const nameFile = await uploadFile(req.files);
+        //const nameFile = await uploadFile(req.files,['txt','md'], 'file-text');
+        const nameFile = await uploadFile(req.files,undefined , undefined);
         return res.status(200).json({ nameFile });
 
     } catch (error) {

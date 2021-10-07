@@ -43,6 +43,7 @@ class Server{
         this.app.use(fileUpload({
             useTempFiles : true,
             tempFileDir : '/tmp/',
+            createParentPath : true, //parametro para que cree la carpeta destino si no exite
             limits: { fileSize: 50 * 1024 * 1024 },
         }));
 
