@@ -17,7 +17,7 @@ const uploadFile = ( files, extentionValid = ['png', 'jpg', 'jpeg', 'gif'], dirF
         }
 
         const nameNew = `${uuidv4()}.${extention}`
-        const uploadPath = path.join(__dirname, '../assets/', dirFiles, nameNew);
+        const uploadPath = path.join(__dirname, '../uploads/', dirFiles, nameNew);
         //console.log(uploadPath);
 
         //Use the mv() method to place the file somewhere on your server

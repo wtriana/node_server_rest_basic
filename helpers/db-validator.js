@@ -57,11 +57,22 @@ const productExistsById = async (id = '') => {
     }
 }
 
+const validCollection = (collection, validCollections)=>{
+
+    const valid = validCollections.includes(collection);
+    if (!valid){
+        throw new Error( `La collección  [${collection}] no esta incluida en [${validCollections}]` );
+    }
+    return true;
+
+}
+
 
 module.exports = {
     isValidRole,
     emailExists,
     userExistsById,
     categoryExistsById,
-    productExistsById
+    productExistsById,
+    validCollection
 }
